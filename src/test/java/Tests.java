@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tests {
@@ -54,11 +55,68 @@ public class Tests {
         Assert.assertEquals(0, players.size());
     }
 
-    // TODO test sort by division
+    // sort by points
+    @Test
+    public void testSortByPoints() {
+        List<Integer> points = new ArrayList<>();
+        points.add(50);
+        points.add(100);
+        points.add(75);
 
-    // TODO test sort by points
+        List<Player> players = factory.getPlayersOnlyDifferentPoints(points);
+        List<Player> sortedPlayers = Player.sortPlayers(players);
 
-    // TODO test sort by division and points
+        Assert.assertEquals(100, sortedPlayers.get(0).getPoints());
+        Assert.assertEquals(75, sortedPlayers.get(1).getPoints());
+        Assert.assertEquals(50, sortedPlayers.get(2).getPoints());
+    }
+
+    // test sort by division
+    @Test
+    public void testSortByDivision() {
+        List<Integer> divisions = new ArrayList<>();
+        divisions.add(0);
+        divisions.add(2);
+        divisions.add(1);
+
+        List<Player> players = factory.getPlayersOnlyDifferentDivisions(divisions);
+        List<Player> sortedPlayers = Player.sortPlayers(players);
+
+        Assert.assertEquals(0, sortedPlayers.get(0).getDivision());
+        Assert.assertEquals(1, sortedPlayers.get(1).getDivision());
+        Assert.assertEquals(2, sortedPlayers.get(2).getDivision());
+    }
+
+    // test sort by division and points
+    @Test
+    public void testGeneralSort() {
+        List<Player> players = factory.getPlayersWithDiffPointsAndDivision();
+        List<Player> sortedPlayers = Player.sortPlayers(players);
+
+        Assert.assertEquals(0, sortedPlayers.get(0).getDivision());
+        Assert.assertEquals(0, sortedPlayers.get(1).getDivision());
+        Assert.assertEquals(100, sortedPlayers.get(0).getPoints());
+        Assert.assertEquals(75, sortedPlayers.get(1).getPoints());
+
+        Assert.assertEquals(1, sortedPlayers.get(3).getDivision());
+        Assert.assertEquals(1, sortedPlayers.get(4).getDivision());
+        Assert.assertEquals(110, sortedPlayers.get(3).getPoints());
+        Assert.assertEquals(75, sortedPlayers.get(4).getPoints());
+    }
+
+    // test three results
+    @Test
+    public void TestThreeResults() {
+        List<Player> players = factory.getPlayersWithDiffPointsAndDivision();
+        List<Player> sortedPlayers = Player.topTreePlayers(Player.sortPlayers(players));
+
+        Assert.assertEquals(3, sortedPlayers.size());
+
+        Assert.assertEquals(0, sortedPlayers.get(0).getDivision());
+        Assert.assertEquals(0, sortedPlayers.get(1).getDivision());
+        Assert.assertEquals(100, sortedPlayers.get(0).getPoints());
+        Assert.assertEquals(75, sortedPlayers.get(1).getPoints());
+    }
 
     // TODO test yaml output
 }
