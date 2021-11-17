@@ -162,6 +162,7 @@ public class Player {
         if(players == null)
             return sortedPlayers;
 
+        // sort by points
         players.sort(new Comparator<Player>() {
             @Override
             public int compare(Player p1, Player p2) {
