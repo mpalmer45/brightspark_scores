@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Player {
@@ -152,6 +153,48 @@ public class Player {
             }
         }
         return -1;
+    }
+
+    // sort players
+    public static List<Player> sortPlayers(List<Player> players) {
+        List<Player> sortedPlayers = new ArrayList<>();
+
+        if(players == null)
+            return sortedPlayers;
+
+        players.sort(new Comparator<Player>() {
+            @Override
+            public int compare(Player p1, Player p2) {
+                return Integer.compare(p2.getPoints(), p1.getPoints());
+            }
+        });
+
+        // sort by division
+        players.sort(new Comparator<Player>() {
+            @Override
+            public int compare(Player p1, Player p2) {
+                return Integer.compare(p1.getDivision(), p2.getDivision());
+            }
+        });
+
+        return players;
+    }
+
+    // get top three players
+    public static List<Player> topTreePlayers(List<Player> players) {
+        List<Player> topThreePlayers = new ArrayList<>();
+
+        int count = 0;
+        for(Player p : players) {
+            if(count >= 3) {
+                break;
+            }
+
+            topThreePlayers.add(p);
+            count++;
+        }
+
+        return topThreePlayers;
     }
 
     @Override
