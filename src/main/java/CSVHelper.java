@@ -11,7 +11,7 @@ public class CSVHelper {
         List<String[]> csvList = new ArrayList<>();
 
         // load file
-        CSVReader reader = new CSVReader(new FileReader(file), ',', '"', 1);
+        CSVReader reader = new CSVReader(new FileReader(file), ',', '"', 0);
 
         // load each line as array and place in a list for easy access
         String[] nextCSVLine;
