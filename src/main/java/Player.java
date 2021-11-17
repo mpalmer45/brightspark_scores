@@ -79,6 +79,10 @@ public class Player {
     public static List<Player> getPlayersFromCSV(List<String[]> decodedCSV) {
         List<Player> playerList = new ArrayList<>();
 
+        // if we've got not data, return an empty list
+        if(decodedCSV.size() == 0)
+            return playerList;
+
         // assume the first line is the column names of the CSV
         String[] headings = decodedCSV.get(0);
 
@@ -91,7 +95,7 @@ public class Player {
         int summaryIndex = findInArray(Player.SUMMARY, headings);
 
         // get data as a player
-        for(int i = 1; i < headings.length; i++) {
+        for(int i = 1; i < decodedCSV.size(); i++) {
             // get the decode csv line
             String[] csvLine = decodedCSV.get(i);
 
