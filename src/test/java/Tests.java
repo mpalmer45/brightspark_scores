@@ -144,6 +144,4 @@ public class Tests {
             Assert.fail("There was an exception when converting to a YAML string");
         }
     }
-
-    // TODO test yaml output
 }
