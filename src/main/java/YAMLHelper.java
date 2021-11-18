@@ -10,7 +10,9 @@ public class YAMLHelper {
         if(list == null)
             return "";
 
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER));
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory()
+                .disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
+                .enable(YAMLGenerator.Feature.MINIMIZE_QUOTES));
 
         return mapper.writeValueAsString(list);
     }
