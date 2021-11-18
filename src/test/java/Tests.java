@@ -137,8 +137,8 @@ public class Tests {
 
         try {
             String yamlString = YAMLHelper.generateYAML(oneRecords);
-            Assert.assertEquals("- name: \"Anne Elk\"\n" +
-                    "  details: \"In division 0 from 2017-10-10 performing Offence\"\n", yamlString);
+            Assert.assertEquals("- name: Anne Elk\n" +
+                    "  details: In division 0 from 2017-10-10 performing Offence\n", yamlString);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             Assert.fail("There was an exception when converting to a YAML string");
