@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,5 +45,27 @@ public class Main {
 
         // convert the csv data to players
         List<Player> players = Player.getPlayersFromCSV(decodedCSV);
+
+        // sort the list by division and points
+        List<Player> sortedPlayers = Player.sortPlayers(players);
+
+        // get top three
+        List<Player> topThreePlayers = Player.topTreePlayers(sortedPlayers);
+
+        // convert top three to records
+        List<Record> records = Record.getRecordsFromPlayers(topThreePlayers);
+
+        // get YAML string
+        String recordsAsYAML = "";
+        try {
+            recordsAsYAML = YAMLHelper.generateYAML(records);
+        } catch (JsonProcessingException e) {
+            Logger.error("There was an error while generating the YAML - " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        // output results
+        System.out.println("records:");
+        System.out.println(recordsAsYAML);
     }
 }
