@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -125,6 +126,23 @@ public class Tests {
 
         Assert.assertEquals("Anne Elk", records.get(0).getName());
         Assert.assertEquals("In division 1 from 2017-10-10 performing Defence", records.get(1).getDetails());
+    }
+
+    // test YAML output
+    @Test
+    public void testYAMLOutput() {
+        List<Record> records = factory.getRecords();
+        List<Record> oneRecords = new ArrayList<>();
+        oneRecords.add(records.get(0));
+
+        try {
+            String yamlString = YAMLHelper.generateYAML(oneRecords);
+            Assert.assertEquals("- name: \"Anne Elk\"\n" +
+                    "  details: \"In division 0 from 2017-10-10 performing Offence\"\n", yamlString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            Assert.fail("There was an exception when converting to a YAML string");
+        }
     }
 
     // TODO test yaml output
