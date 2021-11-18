@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 import java.util.List;
 
 public class YAMLHelper {
+    // generates a YAML output (as a string) from a list of records
     public static String generateYAML(List<Record> list) throws JsonProcessingException {
         if(list == null)
             return "";
