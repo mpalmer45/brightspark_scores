@@ -12,6 +12,8 @@ public class Player {
 
     private String firstName;
     private String lastName;
+    // note: I had some problems producing dates using the YAML library and my Java version - I opted instead to use a
+    //string as the dates were not used in the sorting process
     private String date;
     private int division;
     private int points;
