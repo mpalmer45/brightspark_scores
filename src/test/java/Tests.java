@@ -106,7 +106,7 @@ public class Tests {
 
     // test three results
     @Test
-    public void TestThreeResults() {
+    public void testThreeResults() {
         List<Player> players = factory.getPlayersWithDiffPointsAndDivision();
         List<Player> sortedPlayers = Player.topTreePlayers(Player.sortPlayers(players));
 
@@ -116,6 +116,15 @@ public class Tests {
         Assert.assertEquals(0, sortedPlayers.get(1).getDivision());
         Assert.assertEquals(100, sortedPlayers.get(0).getPoints());
         Assert.assertEquals(75, sortedPlayers.get(1).getPoints());
+    }
+
+    // test record generation
+    @Test
+    public void testRecordGeneration() {
+        List<Record> records = factory.getRecords();
+
+        Assert.assertEquals("Anne Elk", records.get(0).getName());
+        Assert.assertEquals("In division 1 from 2017-10-10 performing Defence", records.get(1).getDetails());
     }
 
     // TODO test yaml output

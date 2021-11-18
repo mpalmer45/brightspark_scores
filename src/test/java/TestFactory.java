@@ -57,6 +57,12 @@ public class TestFactory {
         return players;
     }
 
+    // get records
+    public List<Record> getRecords() {
+        List<Player> players = getPlayersWithDiffPointsAndDivision();
+        return Record.getRecordsFromPlayers(players);
+    }
+
     // TODO get players in different divisions and different scores
 
     // TODO get a yaml output from test players
